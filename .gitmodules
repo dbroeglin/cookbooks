@@ -1,0 +1,3 @@
+[submodule "rvm"]
+	path = rvm
+	url = git://gitorious.org/chef-cookbooks/chef-rvm.git
