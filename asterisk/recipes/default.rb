@@ -22,8 +22,9 @@ include_recipe "apt"
 package "asterisk"
 
 service "asterisk" do
+  running true
   supports :start=> true, :stop => true, :restart => true, :status => true
-  action :enable
+  action [:enable, :start]
 end
 
 %w{ asterisk.conf extensions.conf features.conf indications.conf
