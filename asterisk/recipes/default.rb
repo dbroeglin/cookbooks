@@ -21,6 +21,16 @@ include_recipe "apt"
 
 package "asterisk"
 
+bash "install_dahdi" do
+  user "root"
+  code <<-EOH
+  sudo aptitude -y install dahdi-source
+  sudo m-a -t -i a-i dahdi
+  EOH
+  # TODO: change this one (too brittle) :
+  not_if { ::File.exists?("/lib/modules/2.6.32-5-amd64/dahdi/dahdi.ko") }
+end
+
 service "asterisk" do
   running true
   supports :start=> true, :stop => true, :restart => true, :status => true
